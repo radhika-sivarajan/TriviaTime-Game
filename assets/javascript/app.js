@@ -87,7 +87,6 @@ function restart(){
 	inCorrectCount = 0;
 	unAnsweredCount = 0;
 	count = 0;
-	clearInterval(timeShow);
 	$('.results').hide();
 	$("#restart").hide();
 	startQuiz();
@@ -100,7 +99,7 @@ function displayTime(){
 }
 
 
-// Display all questions and set timer
+// Display all questions and set start time
 function displayQuestion(){
 	sec=1;
 	var multipleChoice = "";
@@ -120,7 +119,7 @@ function displayQuestion(){
 	$(".time-left").show();
 }
 
-// Check the result and update couters
+// Check the result, display answer and update couters
 function checkResult(){
 	var val = "";
 	var ans = "";
@@ -133,8 +132,6 @@ function checkResult(){
 		correctCount++;
 		$(".quiz-form").html("<div class='answer correct'><strong>Correct !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
-
-	// If unanswered OR incorrect answer display Correct answer with its image
 	else if (val === undefined){
 		unAnsweredCount++;
 		$(".quiz-form").html("<div class='answer'><strong>Timeout !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
@@ -143,11 +140,11 @@ function checkResult(){
 		inCorrectCount++;
 		$(".quiz-form").html("<div class='answer'><strong>Incorrect !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
-	// console.log("ans " + ans + " val " + val + " correctCount " + correctCount + " inCorrectCount " + inCorrectCount + " unAnsweredCount " + unAnsweredCount);
 
+	console.log(count+ " | ans: " + ans + " | val: " + val + " | correct: " + correctCount + " | inCorrect: " + inCorrectCount + " | unAns: " + unAnsweredCount);
 }
 
-// Display result
+// Display final result
 function displayResult(correct, incorrect, unanswered){
 	var totalQuiz = quizList.length;
 	var displayMessage = "Your score out of " + totalQuiz + "<hr>Correct answers : " + correct + "<br> Incorrect answers : " + incorrect + "<br> Unanswered : " + unanswered;
@@ -157,9 +154,10 @@ function displayResult(correct, incorrect, unanswered){
 	$('.form').hide();
 }
 
+//Next question - check result of previous question, display next question and status of quiz
 function nextQuestion(){
 	
-	$(".time-left").hide();
+	//$(".time-left").hide();
 	checkResult();
 	count++;
 	
@@ -168,11 +166,13 @@ function nextQuestion(){
 	if (count === quizList.length) {
 		clearInterval(showQuiz);
 		clearInterval(showAns);
+		clearInterval(timeShow);
     	displayResult(correctCount, inCorrectCount, unAnsweredCount);
     	$("#restart").show();
   	}  		
 }
 
+//Start quiz - display first question display timer set interval
 function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();

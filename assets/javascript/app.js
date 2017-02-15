@@ -174,6 +174,7 @@ function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();
 
+
 	displayQuestion();	
 	showQuiz = setInterval(nextQuestion, 1000 * 5);
 	// timeShow = setInterval(setInterval(displayTime, 1000), 1000 * 7);

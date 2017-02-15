@@ -80,6 +80,19 @@ var quizList = [
 	}
 ];
 
+
+// Resetting variable values 
+function restart(){
+	correctCount = 0;
+	inCorrectCount = 0;
+	unAnsweredCount = 0;
+	count = 0;
+	sec=0;
+	$('.results').hide();
+	$("#restart").hide();
+	startQuiz();
+}
+
 // Display the timer
 function displayTime(){
 
@@ -118,15 +131,17 @@ function checkResult(){
 	if(val === ans){
 		correctCount++;
 	}
+
+	// If unanswered OR incorrect answer display Correct answer with its image
 	else if (val === undefined){
 		unAnsweredCount++;
-		$(".quiz-form").html("<div class='answer'><strong>Timeout</strong> <br>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
+		$(".quiz-form").html("<div class='answer'><strong>Timeout</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
 	else{
 		inCorrectCount++;
-		$(".quiz-form").html("<div class='answer'><strong>Incorrect</strong><br>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
+		$(".quiz-form").html("<div class='answer'><strong>Incorrect</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
-	console.log("ans " + ans + " val " + val + " correctCount " + correctCount + " inCorrectCount " + inCorrectCount + " unAnsweredCount " + unAnsweredCount);
+	// console.log("ans " + ans + " val " + val + " correctCount " + correctCount + " inCorrectCount " + inCorrectCount + " unAnsweredCount " + unAnsweredCount);
 
 }
 
@@ -158,25 +173,14 @@ function nextQuestion(){
 function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();
-	displayQuestion();
-	
+
+	displayQuestion();	
 	showQuiz = setInterval(nextQuestion, 1000 * 5);
 	// timeShow = setInterval(setInterval(displayTime, 1000), 1000 * 7);
 }
 
-// Resetting variable values 
-function restart(){
-	correctCount = 0;
-	inCorrectCount = 0;
-	unAnsweredCount = 0;
-	count = 0;
-	sec=0;
-	$('.results').hide();
-	$("#restart").hide();
-	startQuiz();
-}
-
 $(document).ready(function() {
+
 	// When click on start button
 	$("#start").click(startQuiz);
 

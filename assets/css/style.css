@@ -72,6 +72,17 @@ input[type=radio] {
 	line-height: 40px;
 }
 
+.correct {
+	padding: 30px;
+    background-image: url(../images/showerGold.gif);
+    background-position: center;
+    background-size: cover;
+}
+
+.ansImg {
+    border: 10px double #deaf25;
+}
+
 #start, #restart {
     background-color: #6eb615;
     color: white;

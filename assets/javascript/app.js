@@ -4,7 +4,7 @@ var unAnsweredCount = 0;
 var count = 0;
 var sec;
 var showQuiz;
-var timeShow;
+var showTime;
 
 //Question array
 var quizList = [
@@ -92,18 +92,13 @@ function restart(){
 	startQuiz();
 }
 
-// Display the timer
-function displayTime(){
-
-	$(".time-left").html("Time : " + sec++ + " seconds");
-}
-
 
 // Display all questions and set start time
 function displayQuestion(){
-	sec=1;
 	var multipleChoice = "";
+	sec=0;
 	
+
 	//Get mutiple choice for each question, set it's values according to the choices and set same name for each question to group them together.
 	for(var j=0; j<quizList[count].choices.length; j++){
 		multipleChoice += "<br><input name=" + quizList[count].name + " type='radio' value=" + quizList[count].choices[j] + ">&emsp;" + quizList[count].choices[j];  
@@ -161,25 +156,30 @@ function nextQuestion(){
 	checkResult();
 	count++;
 	
-	var showAns = setTimeout(displayQuestion, 1000 * 4);
+	setTimeout(displayQuestion, 1000 * 4);
 	
 	if (count === quizList.length) {
 		clearInterval(showQuiz);
-		clearInterval(showAns);
-		clearInterval(timeShow);
+		clearInterval(showTime);
     	displayResult(correctCount, inCorrectCount, unAnsweredCount);
     	$("#restart").show();
   	}  		
 }
 
-//Start quiz - display first question display timer set interval
+//Start quiz - display first question, display timer and set interval
 function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();
 
-	displayQuestion();		
-	timeShow = setInterval(displayTime, 1000);
+	displayQuestion();
 	showQuiz = setInterval(nextQuestion, 1000 * 10);
+	showTime = setInterval(displayTime, 1000);
+}
+
+// Display the timer
+function displayTime(){
+
+	$(".time-left").html("Time : " + sec++ + " seconds");
 }
 
 $(document).ready(function() {

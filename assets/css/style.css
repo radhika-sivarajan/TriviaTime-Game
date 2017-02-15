@@ -1,0 +1,95 @@
+body{
+  background-image: url("../images/background1.jpg");
+}
+
+h1 {
+	font-family: 'Ewert', serif;
+	font-style: normal;
+	font-size: 50px;
+	text-shadow: 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+	background: -webkit-linear-gradient(330deg, #3c763d 0%, #2b882d 25%, #448b9a 50%, #1e5da2 75%, #184f98 100%);
+	background: linear-gradient(330deg, #3c763d 0%, #2b882d 25%, #448b9a 50%, #1e5da2 75%, #184f98 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+h2 {
+    padding: 20px 0;
+    font-size: 140%;
+    text-align: center;
+    color: #fff;
+    margin: -25px -50px 25px -50px;
+    background: #299dbf;
+}
+
+hr {
+	margin: 10px 0px;
+}
+
+.header {
+    margin-bottom: 20px;
+    font-style: italic;
+    font-size: 12px;
+    background-image: url(../images/background3.jpg);
+}
+
+.time-left {
+	font-size: 20px;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+.quiz-form {	
+	background-color: #a7eaf1;
+	padding: 25px 50px;
+	line-height: 25px;
+	font-size: 15px;
+}
+.question {
+	font-weight: 500;
+}
+
+input[type=radio] {
+	margin-left: 40px;
+	text-align: center;
+}
+
+.score {
+	font-size: 25px;	
+	font-family: 'Aladin', serif;
+	padding: 10px;
+	border-style: solid;
+	border-width: 10px;
+	-moz-border-image: url(../images/blueglass.png) 52 48 58 45 stretch;
+	-webkit-border-image: url(../images/blueglass.png) 52 48 58 45 stretch;
+	-o-border-image: url(../images/blueglass.png) 52 48 58 45 stretch;
+	border-image: url(../images/blueglass.png) 52 48 58 45 stretch;
+    background-color: #99d4ec;
+}
+
+.answer {
+	font-size: 25px;	
+	font-family: 'Acme', serif;
+	text-align: center;
+	line-height: 40px;
+}
+
+#start, #restart {
+    background-color: #6eb615;
+    color: white;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+
+#start:hover, #restart:hover {
+	background-color: #299dbf;
+	box-shadow:0px 0px 5px #6eb615;
+}
+
+.form, .results, #restart {
+	display: none;
+}
+
+.quiz-form, img, footer, #restart { 
+	margin-top: 20px; 
+}

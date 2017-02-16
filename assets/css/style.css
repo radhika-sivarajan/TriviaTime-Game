@@ -43,6 +43,7 @@ hr {
 	padding: 25px 50px;
 	line-height: 35px;
 	font-size: 20px;
+	border: 10px double #fff;
 }
 .question {
 	font-weight: 500;
@@ -70,6 +71,7 @@ input[type=radio] {
 	font-family: 'Acme', serif;
 	text-align: center;
 	line-height: 40px;
+	color: #216122;
 }
 
 .correct {
@@ -79,8 +81,16 @@ input[type=radio] {
     background-size: cover;
 }
 
+.wrong {
+	color: #a7220c;
+}
+
+.wrong, .correct {
+	text-shadow: 4px 4px 6px rgba(0,0,0,0.5) ;
+}
+
 .ansImg {
-    border: 10px double #deaf25;
+    border: 1px solid #fff;
 }
 
 #start, #restart {

@@ -80,7 +80,6 @@ var quizList = [
 	}
 ];
 
-
 // Resetting variable values 
 function restart(){
 	correctCount = 0;
@@ -92,11 +91,11 @@ function restart(){
 	startQuiz();
 }
 
-
-// Display all questions and set start time
+// Display all questions, set lime left and check result
 function displayQuestion(){
+
 	var multipleChoice = "";
-	sec=0;
+	sec=10;
 	
 
 	//Get mutiple choice for each question, set it's values according to the choices and set same name for each question to group them together.
@@ -112,12 +111,17 @@ function displayQuestion(){
 
 	$('.form').show();
 	$(".time-left").show();
+
+	//Check the result after 5 seconds
+	setTimeout(checkResult, 1000 * 10);
 }
 
 // Check the result, display answer and update couters
 function checkResult(){
+
 	var val = "";
 	var ans = "";
+	$(".time-left").hide();
 
 	// Get the value of checked button and compare it with answer of the question. Update the counters accordingly.
 	val = $("input[name='" + quizList[count].name + "']:checked").attr("value");
@@ -125,15 +129,15 @@ function checkResult(){
 
 	if(val === ans){
 		correctCount++;
-		$(".quiz-form").html("<div class='answer correct'><strong>Correct !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
+		$(".quiz-form").html("<div class='answer correct'><strong>CORRECT !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
 	else if (val === undefined){
 		unAnsweredCount++;
-		$(".quiz-form").html("<div class='answer'><strong>Timeout !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
+		$(".quiz-form").html("<div class='answer wrong'><strong>TIMEOUT !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
 	else{
 		inCorrectCount++;
-		$(".quiz-form").html("<div class='answer'><strong>Incorrect !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
+		$(".quiz-form").html("<div class='answer wrong'><strong>INCORRECT !!</strong><hr>Answer is : " + ans + "<br><img src='" + quizList[count].image + "' class='ansImg'></div>");
 	}
 
 	console.log(count+ " | ans: " + ans + " | val: " + val + " | correct: " + correctCount + " | inCorrect: " + inCorrectCount + " | unAns: " + unAnsweredCount);
@@ -152,34 +156,34 @@ function displayResult(correct, incorrect, unanswered){
 //Next question - check result of previous question, display next question and status of quiz
 function nextQuestion(){
 	
-	//$(".time-left").hide();
-	checkResult();
-	count++;
-	
-	setTimeout(displayQuestion, 1000 * 4);
-	
-	if (count === quizList.length) {
+	//If the max number question reacheched clear intervals show restart button else show next question.
+	if (count === quizList.length-1) {
 		clearInterval(showQuiz);
 		clearInterval(showTime);
     	displayResult(correctCount, inCorrectCount, unAnsweredCount);
     	$("#restart").show();
+  	}
+  	else{
+  		count++;	
+		displayQuestion();
   	}  		
 }
 
-//Start quiz - display first question, display timer and set interval
+//Start quiz - display first question, display timer and set interval for the next question
 function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();
 
 	displayQuestion();
-	showQuiz = setInterval(nextQuestion, 1000 * 10);
+
+	showQuiz = setInterval(nextQuestion, 1000 * 15);
 	showTime = setInterval(displayTime, 1000);
 }
 
 // Display the timer
 function displayTime(){
 
-	$(".time-left").html("Time : " + sec++ + " seconds");
+	$(".time-left").html("Time left : " + sec-- + " seconds");
 }
 
 $(document).ready(function() {

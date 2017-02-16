@@ -156,7 +156,7 @@ function displayResult(correct, incorrect, unanswered){
 //Next question - check result of previous question, display next question and status of quiz
 function nextQuestion(){
 	
-	//If the max number question reacheched clear intervals show restart button else show next question.
+	//If the max number question reached clear intervals, show restart button else show next question.
 	if (count === quizList.length-1) {
 		clearInterval(showQuiz);
 		clearInterval(showTime);

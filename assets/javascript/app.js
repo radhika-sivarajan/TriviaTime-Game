@@ -112,7 +112,7 @@ function displayQuestion(){
 	$('.form').show();
 	$(".time-left").show();
 
-	//Check the result after 5 seconds
+	//Check the result after 10 seconds
 	setTimeout(checkResult, 1000 * 10);
 }
 

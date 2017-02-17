@@ -153,10 +153,10 @@ function displayResult(correct, incorrect, unanswered){
 	$('.form').hide();
 }
 
-//Next question - check result of previous question, display next question and status of quiz
+//Next question - Display next question and status of Questionnaire
 function nextQuestion(){
 	
-	//If the max number question reached clear intervals, show restart button else show next question.
+	//If the max number question reached then clear intervals, show restart button. Else show next question.
 	if (count === quizList.length-1) {
 		clearInterval(showQuiz);
 		clearInterval(showTime);
@@ -173,7 +173,6 @@ function nextQuestion(){
 function startQuiz(){
 	$('.map-image').hide();	
 	$('#start').hide();
-
 	displayQuestion();
 
 	showQuiz = setInterval(nextQuestion, 1000 * 15);
@@ -184,6 +183,7 @@ function startQuiz(){
 function displayTime(){
 
 	$(".time-left").html("Time left : " + sec-- + " seconds");
+	console.log("time"+sec);
 }
 
 $(document).ready(function() {
